@@ -1,0 +1,13 @@
+{
+    'announce': 'http://tracker.site1.com/announce',
+    'info':
+    {
+        'name': 'directoryName',
+        'piece length': 0,
+        'files':
+        [
+            {'path': '/path/to/111.txt', 'infohash': <infohash1>},
+            {'path': '/other/path/to/222.txt', 'infohash': <infohash2>}
+        ]
+    }
+}
