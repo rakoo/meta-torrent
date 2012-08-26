@@ -3,20 +3,20 @@ require 'json'
 require 'bencode'
 require 'base32'
 
+# USAGE :
+# ruby multitorrent_simple.rb <directory to process> <output directory>
+#
+# will create the multi-file torrent and all the files torrent from the
+# directory to process and will put them in the output directory
+#
+# This is a dumb script : there is no verification that the torrents
+# already exist, and will not add a valid url in the 'announce' part. It
+# is just a POC
+
 exit unless ARGV[0] and ARGV[1]
 ROOTPATH = ARGV[0]
 
 BLOCK_SIZE = 2**20 # 1MB
-
-#class Set
-  #def to_json(*a)
-    ##self.to_a.to_json(*a)
-  ##end
-
-  ##def self.json_create(o)
-    ##new(*o['data'])
-  ##end
-#end
 
 dir_torrent = {
   'announce' => '',
@@ -25,7 +25,7 @@ dir_torrent = {
   }
 }
 
-# First pass : writing leaves (files) torrents and infohashes in the
+# Overall pass : writing leaves (files) torrents and infohashes in the
 # tree_data
 Dir.glob(File.join(ROOTPATH, "**/*"), File::FNM_DOTMATCH) do |filename|
 
